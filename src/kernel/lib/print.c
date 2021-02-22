@@ -1,3 +1,4 @@
+#include <stdarg.h>
 #include <port.h>
 #include <print.h>
 
