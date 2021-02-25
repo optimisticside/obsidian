@@ -8,6 +8,6 @@
  * memory barrier implementation
  * prevents compiler from accidently messing up stuff
  */
-#define barrier()	asm volatile("" ::: "memory");
+#define barrier()	asm volatile ("" ::: "memory");
 
 #endif /* LIB_DEF_H */
