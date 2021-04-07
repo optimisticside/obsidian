@@ -9,8 +9,8 @@
 #define COM3	0x3E8
 #define COM4	0x2E8
 
-int	serial_recieved(uint16_t port);
-int	serial_check(uint16_t port);
+int	serial_can_read(uint16_t port);
+int	serial_can_write(uint16_t port);
 char	serial_read(uint16_t port);
 int	serial_write(uint16_t port, char ch);
 

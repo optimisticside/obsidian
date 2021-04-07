@@ -5,7 +5,7 @@
  * Check serial writing-ability
  * from line-status register.
  */
-int serial_check(uint16_t port) {
+int serial_can_write(uint16_t port) {
 	return inb(port+5) & 0x20;
 }
 
@@ -13,7 +13,7 @@ int serial_check(uint16_t port) {
  * Check serial reading-ability
  * from line-status register.
  */
-int serial_recieved(uint16_t port) {
+int serial_can_read(uint16_t port) {
 	return inb(port+5) & 1;
 }
 
