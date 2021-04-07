@@ -1,18 +1,18 @@
+#include <dev/serial.h>
 #include <stdarg.h>
 #include <port.h>
 #include <print.h>
 
 /*
- * puts a char in the debug console
- * supported by bochs
+ * Writes a character to the console.
  */
-int putchar(char ch) {
-	outb(0xEF8, ch);
+int putchar(int ch) {
+	serial_write(COM1, ch);
 }
 
 /*
- * prints a series of chars to console
- * doesnt support formatting
+ * Prints a string to the
+ * console.
  */
 int print(char *str) {
 	while (*str++)
@@ -20,8 +20,8 @@ int print(char *str) {
 }
 
 /*
- * formats and prints a string
- * stripped down version of stdio printf
+ * Formats and prints a string.
+ * Stripped down version of stdio's "printf".
  */
 int printf(const char *fmt, ...) {
 	va_list arg;
@@ -35,12 +35,13 @@ int printf(const char *fmt, ...) {
 }
 
 /*
- * main formatting procedure
- * only suppostrs basic formats
- * supports %c and %s right now
+ * Formats a string.
+ * Only supports basic formats:
+ * %c, %s.
  */
 size_t vnsprintf(char *str, size_t n, const char *fmt, va_list arg) {
 	size_t i = 0;
+	char c;
 
 	while (*fmt++) {
 		if (*fmt != '%') {
