@@ -1,7 +1,9 @@
 #ifndef DEV_SERIAL_H
 #define DEV_SERIAL_H
 
-/* serial port defenitions */
+/*
+ * Serial port defenitions
+ */
 #define COM1	0x3F8
 #define COM2	0x2F8
 #define COM3	0x3E8

@@ -2,24 +2,23 @@
 #include <dev/serial.h>
 
 /*
- * checks serial transmit
- * used when writing
+ * Check serial writing-ability
+ * from line-status register.
  */
 int serial_check(uint16_t port) {
 	return inb(port+5) & 0x20;
 }
 
 /*
- * checks if last byte was received
- * used when reading
+ * Check serial reading-ability
+ * from line-status register.
  */
 int serial_recieved(uint16_t port) {
 	return inb(port+5) & 1;
 }
 
 /*
- * writes a byte to a serial port
- * waits until transmit is empty
+ * Write a character to serial.
  */
 int serial_write(uint16_t port, char val) {
 	while (serial_check(port));
@@ -27,8 +26,7 @@ int serial_write(uint16_t port, char val) {
 }
 
 /*
- * reads a char from a serial port
- * waits until last char was received
+ * Read a character from serial.
  */
 char serial_read(uint16_t port) {
 	while (serial_received(port));
