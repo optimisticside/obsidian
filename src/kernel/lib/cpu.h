@@ -4,41 +4,38 @@
 #include <def.h>
 
 /*
- * disables interrupts
- * does this by clearing interrupt flag
+ * Disable interrupts on local cpu.
  */
 static inline int cli() {
 	asm volatile ("cli");
 }
 
 /*
- * enables interrupts
- * does this by setting interrupt flag
+ * Enable interrupts on local cpu.
  */
 static inline int sti() {
 	asm volatile ("sti");
 }
 
 /*
- * pauses the cpu
- * used to optimize things like spinlocks
+ * Pause the cpu.
+ * Use to de-pipeline memory needs.
  */
 static inline int pause() {
 	asm volatile ("pause");
 }
 
 /*
- * halts the cpu
- * pauses cpu until next interrupt
+ * Halt the cpu until
+ * next interrupt occurs.
  */
 static inline int hlt() {
 	asm volatile ("hlt");
 }
 
 /*
- * exchanges a long
- * used for test-and-set operations
- * it is atomic
+ * Performs a test-and-set operation
+ * Used in place of C code to ensure atomicity.
  */
 static inline uint32_t xchg(volatile uint32_t *addr, uint32_t val) {
 	uint32_t res;
